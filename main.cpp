@@ -8,7 +8,7 @@ static SDL_Window *window = NULL;
 static SDL_Renderer *renderer = NULL;
 static SDL_AudioDeviceID audio_device = 0;
 
-SDL_AppResult SDL_AppInit(void** appdate, int argc, char* argv[]) {
+SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[]) {
 
     SDL_SetAppMetadata("Warren Test", "1.0", "com.warrentest");
 
@@ -25,7 +25,7 @@ SDL_AppResult SDL_AppInit(void** appdate, int argc, char* argv[]) {
     return SDL_APP_CONTINUE;
 }
 
-SDL_AppResult SDL_AppEvent(void* appsatte, SDL_Event* event) {
+SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event) {
     if (event->type == SDL_EVENT_QUIT) { return SDL_APP_SUCCESS; }
     return SDL_APP_CONTINUE;
 }
