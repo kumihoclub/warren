@@ -33,3 +33,4 @@
 
 # Clion runtime folders
 /cmake-build-debug/
+/cmake-build-release/
