@@ -34,9 +34,16 @@ FetchContent_MakeAvailable(sqlite)
 
 message("${SQLITE3_LIBRARIES}")
 
+set(SRCS
+        drive/src/dbio.cpp
+        drive/dbio.h
+
+)
+
 add_executable(warren
         main.cpp
         ${sqlite_SOURCE_DIR}/sqlite3.c
+        ${SRCS}
 )
 target_link_libraries(warren
         PRIVATE
