@@ -23,43 +23,39 @@ FetchContent_Declare(
 )
 
 FetchContent_Declare(
-        leveldb
-        GIT_REPOSITORY https://github.com/google/leveldb.git
-        GIT_TAG main
-        GIT_PROGRESS TRUE
+        sqlite
+        URL https://sqlite.org/2025/sqlite-amalgamation-3490200.zip
         EXCLUDE_FROM_ALL
 )
 
 FetchContent_MakeAvailable(SDL3)
 FetchContent_MakeAvailable(squirrel)
-FetchContent_MakeAvailable(leveldb)
+FetchContent_MakeAvailable(sqlite)
 
-#find_package(SDL3 REQUIRED)
-#
-#add_subdirectory(${PROJECT_SOURCE_DIR}/dep/squirrel)
-#
-#set(LOOSE_DEP_SRCS ${PROJECT_SOURCE_DIR}/dep/sqlite/sqlite3.c)
+message("${SQLITE3_LIBRARIES}")
 
-add_executable(warren main.cpp)#${LOOSE_DEP_SRCS})
+add_executable(warren
+        main.cpp
+        ${sqlite_SOURCE_DIR}/sqlite3.c
+)
 target_link_libraries(warren
         PRIVATE
         SDL3::SDL3-shared
         squirrel::squirrel
-        leveldb
 )
 
 target_include_directories(warren
         PRIVATE
         SDL3::Headers
         squirrel::Headers
-        leveldb::Headers
+        ${sqlite_SOURCE_DIR}
 )
 
 add_custom_command(TARGET warren POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "$<TARGET_FILE_DIR:SDL3-shared>/SDL3.dll"
+        $<TARGET_FILE_DIR:SDL3-shared>/SDL3.dll
         $<TARGET_FILE_DIR:warren>
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "$<TARGET_FILE_DIR:squirrel>/squirrel.dll"
+        $<TARGET_FILE_DIR:squirrel>/squirrel.dll
         $<TARGET_FILE_DIR:warren>
 )
