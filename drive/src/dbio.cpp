@@ -92,5 +92,35 @@ const sqlite3_vfs drive::io::db::vfs = {
     },
     +[](sqlite3_vfs *hvfs, int nbuf, char *hbuffer_out) -> void {
         // void
+    },
+    +[](sqlite3_vfs *pVfs,void *pH,const char *zSym) -> void(*)() {
+        return nullptr;
+    },
+    +[](sqlite3_vfs *pVfs, void *pHandle) -> void {
+        // void
+    },
+    +[](sqlite3_vfs *pVfs, int nBuf, char *zBuf) -> int {
+        return SQLITE_OK;
+    },
+    +[](sqlite3_vfs *pVfs, int microsec) -> int {
+        return SQLITE_OK;
+    },
+    +[](sqlite3_vfs *pVfs, double *prNow) -> int {
+        return SQLITE_OK;
+    },
+    +[](sqlite3_vfs *pVfs, int nBuf, char *zBuf) -> int {
+        return SQLITE_OK;
+    },
+    +[](sqlite3_vfs *pVfs, sqlite3_int64 *piNow) -> int {
+        return SQLITE_OK;
+    },
+    +[](sqlite3_vfs *pNotUsed, const char *zName, sqlite3_syscall_ptr pNewFunc) -> int {
+        return SQLITE_OK;
+    },
+    +[](sqlite3_vfs *pNotUsed, const char *zName) -> void(*)() {
+        return nullptr;
+    },
+    +[](sqlite3_vfs *p, const char *zName) -> const char* {
+        return nullptr;
     }
 };
