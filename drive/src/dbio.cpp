@@ -66,7 +66,7 @@ const sqlite3_io_methods drive::io::db::methods = {
     }
 };
 
-const sqlite3_file drive::io::db::file = { &methods };
+//const sqlite3_file drive::io::db::file = { &methods };
 
 const sqlite3_vfs drive::io::db::vfs = {
     3,

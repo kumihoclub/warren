@@ -6,11 +6,17 @@
 #define DBIO_H
 
 #include "sqlite3.h"
+#include "SDL3/SDL.h"
 
 namespace drive::io::db {
 
 extern const sqlite3_io_methods methods;
-extern const sqlite3_file file;
+
+struct file : public sqlite3_file {
+    file() : sqlite3_file(&methods) {}
+};
+
+//extern const sqlite3_file file;
 extern const sqlite3_vfs vfs;
 
 }

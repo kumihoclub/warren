@@ -28,15 +28,26 @@ FetchContent_Declare(
         EXCLUDE_FROM_ALL
 )
 
+FetchContent_Declare(
+        catch2
+        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+        GIT_TAG v3.8.1
+        GIT_PROGRESS TRUE
+        EXCLUDE_FROM_ALL
+)
+
 FetchContent_MakeAvailable(SDL3)
 FetchContent_MakeAvailable(squirrel)
 FetchContent_MakeAvailable(sqlite)
+FetchContent_MakeAvailable(catch2)
 
 message("${SQLITE3_LIBRARIES}")
 
 set(SRCS
         drive/src/dbio.cpp
         drive/dbio.h
+        drive/data.h
+        uid.h
 
 )
 
